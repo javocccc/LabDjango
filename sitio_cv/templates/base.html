@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}CV del grupo{% endblock %}</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        header, footer {
+            padding: 20px;
+            background: #17324d;
+            color: white;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+        }
+
+        main {
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 24px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        main a {
+            color: #145da0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Currículums del grupo</h1>
+        <nav>
+            <a href="{% url 'home' %}">Inicio</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>Laboratorio 5 · Programación de Aplicaciones</p>
+    </footer>
+</body>
+</html>
