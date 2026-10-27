@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}CV de {{ nombre }}{% endblock %}
+
+{% block content %}
+<article>
+    <h2>{{ nombre }}</h2>
+    <p>{{ titulo }}</p>
+
+    <h3>Contacto</h3>
+    <p>
+        Correo:
+        <a href="mailto:{{ contacto.email }}">
+            {{ contacto.email }}
+        </a>
+    </p>
+    <p>Teléfono: {{ contacto.telefono }}</p>
+
+    <h3>Habilidades</h3>
+    <ul>
+        {% for habilidad in habilidades %}
+            <li>{{ habilidad }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Experiencia y proyectos</h3>
+    {% for item in experiencia %}
+        <section>
+            <h4>{{ item.cargo }}</h4>
+            <p>{{ item.periodo }}</p>
+            <p>{{ item.descripcion }}</p>
+        </section>
+    {% endfor %}
+</article>
+{% endblock %}
