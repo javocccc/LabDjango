@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio del grupo{% endblock %}
+
+{% block content %}
+<h2>Integrantes</h2>
+<p>Selecciona un integrante para consultar su currículum.</p>
+
+<ul>
+    {% for integrante in integrantes %}
+        <li>
+            <a href="{{ integrante.url }}">
+                {{ integrante.nombre }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
