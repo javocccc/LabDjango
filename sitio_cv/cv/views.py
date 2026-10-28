@@ -43,3 +43,32 @@ def cv_ejemplo(request):
     }
 
     return render(request, "cv/cv_ejemplo.html", contexto)
+
+    def cv_javier(request):
+    contexto = {
+        "nombre": "Javier Carrasco",
+        "titulo": "Ingeniero civil en computación e informática",
+        "perfil": "Estudiante de Ingeniería Civil en Computación e Informática en la Universidad central.",
+        "contacto": {
+            "email": "javo7789@gmail.com",  
+            "telefono": "+56956083862",  
+            "ubicacion": "Chile",
+        },
+        "experiencia": [
+            {
+                "cargo": "Practicante en desarrollo de software",
+                "empresa": "Mercado huerto y jardin",
+                "periodo": "10/08/2026 - 10/11/2026",
+                "descripcion": "Crear sitio web",
+            },
+        ],
+        "educacion": [
+            {
+                "titulo": "Ingeniería Civil en Computación e Informática",
+                "institucion": "Universidad Central",
+                "periodo": "2022 - 2026",
+                "descripcion": "Estudiante de Ingeniería Civil en Computación e Informática.",
+            },
+        ],
+    }
+    return render(request, "cv/cv_javier.html", contexto)
