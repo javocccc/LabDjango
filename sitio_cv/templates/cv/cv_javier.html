@@ -1,39 +1,223 @@
-{% extends "base.html" %} {% block title %}CV de {{ nombre }}{% endblock %} {% block content %}
-{{ nombre }}
-{{ titulo }}
+{% extends "base.html" %}
 
-{% if contacto.email %}
-{{ contacto.email }}
-{% endif %} {% if contacto.telefono %}
-{{ contacto.telefono }}
-{% endif %} {% if contacto.ubicacion %}
-{{ contacto.ubicacion }}
-{% endif %} {% if sitio_web %}
-CV completo
-{% endif %}
-Perfil profesional
-{{ perfil }}
+{% block title %}CV de {{ nombre }}{% endblock %}
 
-Experiencia y proyectos
-{% for exp in experiencia %}
-{{ exp.cargo }}
-{{ exp.empresa }}
-{{ exp.periodo }}
-{{ exp.descripcion }}
+{% block content %}
+<style>
+    body > header {
+        padding: 14px;
+    }
 
-{% endfor %}
-Educación
-{% for edu in educacion %}
-{{ edu.titulo }}
-{{ edu.institucion }}
-{{ edu.periodo }}
-{% if edu.descripcion %}
-{{ edu.descripcion }}
+    body > header h1 {
+        margin: 0 0 6px;
+        font-size: 24px;
+    }
 
-{% endif %}
-{% endfor %}
-Habilidades
-{% for habilidad in habilidades %}
-{{ habilidad }}
-{% endfor %}
+    main {
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 22px;
+    }
+
+    body > footer {
+        padding: 12px;
+    }
+
+    body > footer p {
+        margin: 0;
+        font-size: 13px;
+    }
+
+    .cv-javier {
+        color: #1f2937;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .cv-javier .presentacion {
+        background: #17324d;
+        color: white;
+        padding: 18px;
+        border-radius: 8px;
+        margin-bottom: 18px;
+    }
+
+    .cv-javier .presentacion h2 {
+        margin: 0 0 4px;
+        font-size: 26px;
+        color: white;
+    }
+
+    .cv-javier .presentacion p {
+        margin: 0;
+        color: #e2e8f0;
+    }
+
+    .cv-javier section {
+        margin-bottom: 16px;
+    }
+
+    .cv-javier h3 {
+        margin: 0 0 10px;
+        border-left: 4px solid #145da0;
+        padding-left: 9px;
+        color: #145da0;
+        font-size: 17px;
+    }
+
+    .cv-javier p {
+        margin: 5px 0;
+    }
+
+    .cv-javier .contactos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .cv-javier .contactos li {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 7px 10px;
+        overflow-wrap: anywhere;
+    }
+
+    .cv-javier .tarjeta {
+        background: #fafafa;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 8px;
+    }
+
+    .cv-javier .tarjeta h4 {
+        margin: 0 0 4px;
+        font-size: 15px;
+    }
+
+    .cv-javier .institucion {
+        color: #145da0;
+        font-weight: bold;
+    }
+
+    .cv-javier .periodo {
+        color: #6b7280;
+        font-size: 12px;
+    }
+
+    .cv-javier .columnas {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 20px;
+    }
+
+    .cv-javier .columnas > section {
+        min-width: 0;
+    }
+
+    .cv-javier .habilidades {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .cv-javier .habilidades li {
+        background: #e0f2fe;
+        color: #0369a1;
+        padding: 5px 10px;
+        border-radius: 16px;
+        font-size: 13px;
+    }
+
+    @media (max-width: 650px) {
+        main {
+            margin: 12px;
+            padding: 16px;
+        }
+
+        .cv-javier .columnas {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+    }
+</style>
+
+<article class="cv-javier">
+    <div class="presentacion">
+        <h2>{{ nombre }}</h2>
+        <p>{{ titulo }}</p>
+    </div>
+
+    <section>
+        <h3>Perfil profesional</h3>
+        <p>{{ perfil }}</p>
+    </section>
+
+    <section>
+        <h3>Información de contacto</h3>
+
+        <ul class="contactos">
+            {% if contacto.email %}
+                <li>
+                    <strong>Email:</strong>
+                    <a href="mailto:{{ contacto.email }}">
+                        {{ contacto.email }}
+                    </a>
+                </li>
+            {% endif %}
+
+            {% if contacto.telefono %}
+                <li>
+                    <strong>Teléfono:</strong>
+                    {{ contacto.telefono }}
+                </li>
+            {% endif %}
+
+            {% if contacto.ubicacion %}
+                <li>
+                    <strong>Ubicación:</strong>
+                    {{ contacto.ubicacion }}
+                </li>
+            {% endif %}
+        </ul>
+    </section>
+
+    <section>
+        <h3>Experiencia y proyectos</h3>
+
+        {% for exp in experiencia %}
+            <div class="tarjeta">
+                <h4>{{ exp.cargo }}</h4>
+                <p class="institucion">{{ exp.empresa }}</p>
+                <p class="periodo">{{ exp.periodo }}</p>
+                <p>{{ exp.descripcion }}</p>
+            </div>
+        {% endfor %}
+    </section>
+
+    <div class="columnas">
+        <section>
+            <h3>Educación</h3>
+
+            {% for edu in educacion %}
+                <div class="tarjeta">
+                    <h4>{{ edu.titulo }}</h4>
+                    <p class="institucion">{{ edu.institucion }}</p>
+                    <p class="periodo">{{ edu.periodo }}</p>
+
+                    {% if edu.descripcion %}
+                        <p>{{ edu.descripcion }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </section>
+    </div>
+</article>
 {% endblock %}
