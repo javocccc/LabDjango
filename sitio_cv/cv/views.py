@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse
 
 def cv_personal(request):
     return render(request, 'cv_personal.html')
@@ -7,8 +8,9 @@ def cv_personal(request):
 def home(request):
     contexto = {
         "integrantes": [
-            {"nombre": "Tu nombre completo", "url": "#"},
+            {"nombre": "Fabian Silva (Practicante Colsan)", "url": reverse("cv_fabian")},
             {"nombre": "Matías", "url": "#"},
+            {"nombre": "Alex Ejemplo (Referencia)", "url": reverse("cv_ejemplo")},
         ]
     }
 
