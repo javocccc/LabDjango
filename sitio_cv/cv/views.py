@@ -1,25 +1,32 @@
 from django.shortcuts import render
-
-def cv_personal(request):
-    return render(request, 'cv_personal.html')
+from django.urls import reverse
 
 
 def home(request):
     contexto = {
         "integrantes": [
-            {"nombre": "Tu nombre completo", "url": "#"},
-            {"nombre": "Matías", "url": "#"},
+            {
+                "nombre": "Matías Olivares",
+                "url": reverse("cv_matias"),
+            },
         ]
     }
-
     return render(request, "home.html", contexto)
+
 
 def cv_matias(request):
     contexto = {
-        'nombre': 'Matías Olivares',
-        'titulo': 'Estudiante / Desarrollador',
-        'contacto': 'matias@ejemplo.com',
-        'habilidades': ['Python', 'Django', 'Git', 'Resolución de problemas'],
-        'experiencia': ['Laboratorios de Programación de Aplicaciones (2026)']
+        "nombre": "Matías Olivares",
+        "titulo": "Estudiante de Ingeniería Civil en Computación e Informática",
+        "habilidades": [
+            "Desarrollo web",
+            "Programación",
+            "Atención al cliente",
+        ],
+        "experiencia": [
+            "Desarrollo de tres sitios web y software",
+            "Guardia de seguridad en un pub",
+            "Cajero en Doggis",
+        ],
     }
-    return render(request, 'cv_matias.html', contexto)
+    return render(request, "cv_matias.html", contexto)
