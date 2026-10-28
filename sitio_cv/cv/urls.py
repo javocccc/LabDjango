@@ -10,5 +10,5 @@ urlpatterns = [
 
 urlpatterns = [
     path("", views.home, name="home"),
-    path("cv/ejemplo/", views.cv_ejemplo, name="cv_ejemplo"),
+    path('cv/matias/', views.cv_matias, name='cv_matias'),
 ]
