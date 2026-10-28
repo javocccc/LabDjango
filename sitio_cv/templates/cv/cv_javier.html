@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block title %}CV de {{ nombre }}{% endblock %} {% block content %}
+{{ nombre }}
+{{ titulo }}
+
+{% if contacto.email %}
+{{ contacto.email }}
+{% endif %} {% if contacto.telefono %}
+{{ contacto.telefono }}
+{% endif %} {% if contacto.ubicacion %}
+{{ contacto.ubicacion }}
+{% endif %} {% if sitio_web %}
+CV completo
+{% endif %}
+Perfil profesional
+{{ perfil }}
+
+Experiencia y proyectos
+{% for exp in experiencia %}
+{{ exp.cargo }}
+{{ exp.empresa }}
+{{ exp.periodo }}
+{{ exp.descripcion }}
+
+{% endfor %}
+Educación
+{% for edu in educacion %}
+{{ edu.titulo }}
+{{ edu.institucion }}
+{{ edu.periodo }}
+{% if edu.descripcion %}
+{{ edu.descripcion }}
+
+{% endif %}
+{% endfor %}
+Habilidades
+{% for habilidad in habilidades %}
+{{ habilidad }}
+{% endfor %}
+{% endblock %}
