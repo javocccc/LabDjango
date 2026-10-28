@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}CV de {{ nombre }}{% endblock %}
+
+{% block content %}
+<style>
+    .cv-header {
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 16px;
+        margin-bottom: 24px;
+    }
+    .cv-header h2 {
+        margin: 0 0 6px 0;
+        color: #17324d;
+        font-size: 1.85rem;
+    }
+    .cv-subtitle {
+        color: #4b5563;
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin: 0;
+    }
+    .cv-section {
+        margin-bottom: 24px;
+    }
+    .cv-section h3 {
+        color: #145da0;
+        font-size: 1.25rem;
+        border-left: 4px solid #145da0;
+        padding-left: 10px;
+        margin-bottom: 12px;
+    }
+    .contact-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+    .contact-item {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 8px 14px;
+        font-size: 0.95rem;
+    }
+    .timeline-item {
+        background: #fafafa;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 14px;
+    }
+    .timeline-item h4 {
+        margin: 0 0 4px 0;
+        color: #1f2937;
+        font-size: 1.05rem;
+    }
+    .timeline-item .institution {
+        color: #145da0;
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+    }
+    .timeline-item .period {
+        color: #6b7280;
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+    }
+    .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .skill-badge {
+        background: #e0f2fe;
+        color: #0369a1;
+        padding: 6px 12px;
+        border-radius: 16px;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+</style>
+
+<article class="cv-container">
+    <div class="cv-header">
+        <h2>{{ nombre }}</h2>
+        <p class="cv-subtitle">{{ titulo }} · {{ cargo_actual }}</p>
+    </div>
+
+    <section class="cv-section">
+        <h3>Perfil Profesional</h3>
+        <p>{{ perfil }}</p>
+    </section>
+
+    <section class="cv-section">
+        <h3>Información de Contacto</h3>
+        <ul class="contact-list">
+            <li class="contact-item">
+                <strong>Email:</strong>
+                <a href="mailto:{{ contacto.email }}">{{ contacto.email }}</a>
+            </li>
+            <li class="contact-item">
+                <strong>Teléfono:</strong> {{ contacto.telefono }}
+            </li>
+            <li class="contact-item">
+                <strong>Ubicación:</strong> {{ contacto.ubicacion }}
+            </li>
+        </ul>
+    </section>
+
+    <section class="cv-section">
+        <h3>Experiencia Laboral</h3>
+        {% for exp in experiencia %}
+            <div class="timeline-item">
+                <h4>{{ exp.cargo }}</h4>
+                <div class="institution">{{ exp.empresa }}</div>
+                <div class="period">{{ exp.periodo }}</div>
+                <p>{{ exp.descripcion }}</p>
+            </div>
+        {% endfor %}
+    </section>
+
+    <section class="cv-section">
+        <h3>Educación</h3>
+        {% for edu in educacion %}
+            <div class="timeline-item">
+                <h4>{{ edu.titulo }}</h4>
+                <div class="institution">{{ edu.institucion }}</div>
+                <div class="period">{{ edu.periodo }}</div>
+                <p>{{ edu.descripcion }}</p>
+            </div>
+        {% endfor %}
+    </section>
+
+    <section class="cv-section">
+        <h3>Habilidades</h3>
+        <div class="skills-grid">
+            {% for habilidad in habilidades %}
+                <span class="skill-badge">{{ habilidad }}</span>
+            {% endfor %}
+        </div>
+    </section>
+</article>
+{% endblock %}
